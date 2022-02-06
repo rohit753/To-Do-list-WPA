@@ -43,7 +43,7 @@
         /* margin-top: 15px; */
         padding-bottom: 10px;
         padding-top: 10px;
-        display: none;
+        /* display: none; */
       }
       input {
         margin: 0;
@@ -211,7 +211,7 @@
   displaytask(taskarr);
   function displaytask(taskarr) {
     taskDiv.innerHTML = "";
-    (taskarr.length>0) ? taskDiv.style.display="":"";
+    // (taskarr.length>0) ? taskDiv.style.display="":"";
     taskarr.map(function (obj, index) {
       console.log(obj);
       if (obj.Task_Name) {
