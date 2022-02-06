@@ -43,6 +43,7 @@
         /* margin-top: 15px; */
         padding-bottom: 10px;
         padding-top: 10px;
+        display: none;
       }
       input {
         margin: 0;
@@ -147,37 +148,36 @@
       }
     </style>
     <script>
-   // import './news-article.js';
-//import { topHeadlinesUrl } from './newsApi.js';
+      // import './news-article.js';
+      //import { topHeadlinesUrl } from './newsApi.js';
 
-window.addEventListener('load', () => {
- // getNews();
-  registerSW();
-});
+      window.addEventListener("load", () => {
+        // getNews();
+        registerSW();
+      });
 
-async function getNews() {
-  const res = await fetch(topHeadlinesUrl);
-  const json = await res.json();
+      // async function getNews() {
+      //   const res = await fetch(topHeadlinesUrl);
+      //   const json = await res.json();
 
-  const main = document.querySelector('main');
+      //   const main = document.querySelector('main');
 
-  json.articles.forEach(article => {
-    const el = document.createElement('news-article');
-    el.article = article;
-    main.appendChild(el);
-  });
-}
+      //   json.articles.forEach(article => {
+      //     const el = document.createElement('news-article');
+      //     el.article = article;
+      //     main.appendChild(el);
+      //   });
+      // }
 
-async function registerSW() {
-  if ('serviceWorker' in navigator) {
-    try {
-      await navigator.serviceWorker.register('./sw.js');
-    } catch (e) {
-      console.log(`SW registration failed`);
-    }
-  }
-}
-
+      async function registerSW() {
+        if ("serviceWorker" in navigator) {
+          try {
+            await navigator.serviceWorker.register("./sw.js");
+          } catch (e) {
+            console.log(`SW registration failed`);
+          }
+        }
+      }
     </script>
   </head>
   <body>
@@ -211,6 +211,7 @@ async function registerSW() {
   displaytask(taskarr);
   function displaytask(taskarr) {
     taskDiv.innerHTML = "";
+    (taskarr.length>0) ? taskDiv.style.display="":"";
     taskarr.map(function (obj, index) {
       console.log(obj);
       if (obj.Task_Name) {
