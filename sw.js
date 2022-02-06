@@ -1,5 +1,5 @@
 const cacheName = "news-v1";
-const staticAssets = ["./", "./index.html"];
+const staticAssets = ["./", "./index.html", "./manifest.json"];
 
 self.addEventListener("install", async (e) => {
   const cache = await caches.open(cacheName);
