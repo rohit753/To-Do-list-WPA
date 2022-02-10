@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="manifest" href="./manifest.webmanifest"> -->
+    <link
+      rel="shortcut icon"
+      href="https://static.thenounproject.com/png/201284-200.png"
+      type="image/x-icon"
+    />
+    <title>TO-Do-App</title>
+    <style>
+      body {
+        background-color: aquamarine;
+      }
+      .container {
+        width: 93%;
+        margin: auto;
+        background-color: beige;
+        text-align: center;
+        min-height: 800px;
+        border-radius: 10px;
+        padding-top: 1px;
+        padding-bottom: 15px;
+      }
+      .title {
+        background-color: rgb(105, 255, 118);
+        width: 60%;
+        margin: auto;
+        font-size: 32px;
+        font-weight: bolder;
+        border-radius: 10px;
+      }
+      #list {
+        background-color: rgb(204, 255, 204);
+        width: 94%;
+        margin: auto;
+        border-radius: 10px;
+        margin-top: 15px;
+        /* margin-top: 15px; */
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+      input {
+        margin: 0;
+        width: 31%;
+        margin-right: 20px;
+        height: 35px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
+      .input > button {
+        /* min-width: 200px; */
+        width: 20%;
+        height: 38px;
+        margin-bottom: 10px;
+        font-weight: bolder;
+        border-radius: 5px;
+        vertical-align: top;
+      }
+      .insidebtn {
+        margin-left: 1%;
+        font-weight: bold;
+      }
+      #taskk {
+        font-weight: bolder;
+        font-size: larger;
+        /* text-decoration: line-through; */
+      }
+      .total {
+        background-color: rgb(255, 189, 189);
+        width: 56%;
+        margin: auto;
+        border-radius: 6px;
+        /* background-color: black; */
+        /* background-color: rgb(212, 189, 255); */
+        /* padding: 0.1%; */
+      }
+      #distDiv:hover {
+        background-color: #ffb3b3;
+      }
+      #distDiv {
+        background-color: #ffc4c4;
+        /* margin: 10px; */
+        border-radius: 15px;
+        padding-bottom: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+        /* background-color: black; */
+        max-width: 850px;
+        margin: 10px auto;
+        /* padding-top: 50px; */
+      }
+      button:hover {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 29px 38px,
+          rgba(0, 0, 0, 0.22) 0px 25px 12px;
+      }
+      button {
+        border: none;
+        min-width: 50px;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 5px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+      input:focus {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+          rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        /* height: 50px; */
+        /* margin-top: -10px; */
+        border: none;
+      }
+      input {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border: none;
+      }
+      p {
+        padding: 2px;
+        font-weight: bolder;
+      }
+      #taskss:hover {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+          rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        font-weight: bolder;
+      }
+      #taskss {
+        box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+          rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+        background-color: aliceblue;
+        padding: 5px;
+        border-radius: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+        max-width: 700px;
+        /* min-width: 699px; */
+      }
+      .ALL {
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 4px,
+          rgba(0, 0, 0, 0.3) 0px 7px 23px -1px,
+          rgba(0, 0, 0, 0.2) 0px -4px 0px inset;
+      }
+      #editinp {
+        min-width: 70%;
+      }
+    </style>
+    <script>
+   // import './news-article.js';
+//import { topHeadlinesUrl } from './newsApi.js';
+
+window.addEventListener('load', () => {
+ // getNews();
+  registerSW();
+});
+
+async function getNews() {
+  const res = await fetch(topHeadlinesUrl);
+  const json = await res.json();
+
+  const main = document.querySelector('main');
+
+  json.articles.forEach(article => {
+    const el = document.createElement('news-article');
+    el.article = article;
+    main.appendChild(el);
+  });
+}
+
+async function registerSW() {
+  if ('serviceWorker' in navigator) {
+    try {
+      await navigator.serviceWorker.register('./sw.js');
+    } catch (e) {
+      console.log(`SW registration failed`);
+    }
+  }
+}
+
+    </script>
+  </head>
+  <body>
+    <div class="container ALL">
+      <div class="title ALL"><p>To-Do List</p></div>
+      <div class="total ALL">
+        <p>Total Task - <span id="count">0</span></p>
+      </div>
+      <section class="input">
+        <input
+          placeholder=" Add Task.....  "
+          type="text"
+        /><button style="margin-top: -1px" onclick="btnclick()">
+          Create Task
+        </button>
+      </section>
+      <div class="ALL" id="list"></div>
+    </div>
+  </body>
+</html>
+<script>
+  let taskDiv = document.getElementById("list");
+  let taskarr = JSON.parse(localStorage.getItem("localTask")) || [];
+  // taskarr = [];
+  // localStorage.setItem("localTask", JSON.stringify(taskarr));
+  let cnt = document.getElementById("count");
+  cnt.textContent = taskarr.length;
+  console.log(cnt);
+
+  btnclick();
+  displaytask(taskarr);
+  function displaytask(taskarr) {
+    taskDiv.innerHTML = "";
+    taskarr.map(function (obj, index) {
+      console.log(obj);
+      if (obj.Task_Name) {
+        let div1 = document.createElement("div");
+        div1.setAttribute("id", "distDiv");
+        div1.setAttribute("class", "ALL");
+        let p = document.createElement("p");
+        p.setAttribute("id", "taskk");
+        let edtbtn = document.createElement("button");
+        edtbtn.setAttribute("class", "insidebtn");
+        edtbtn.textContent = "edit🖋";
+        edtbtn.style.background = "yellow";
+        let stsbtn = document.createElement("button");
+        stsbtn.setAttribute("class", "insidebtn");
+        stsbtn.textContent = !obj.Status ? "Pending. " + "❌" : "";
+        if (obj.Status === false) stsbtn.style.background = "orange";
+        else {
+          stsbtn.textContent = obj.Status ? "Done...... " + "✔️" : "";
+          stsbtn.style.background = "lightgreen";
+          p.style.textDecoration = "line-through";
+        }
+        //----------------------------
+        let editDiv = document.createElement("div");
+        let inpt = document.createElement("input");
+        inpt.setAttribute("id", "editinp");
+        inpt.style.marginTop = "10px";
+        inpt.style.marginBottom = "-10px";
+
+        let dnbtn = document.createElement("button");
+        dnbtn.setAttribute("id", "dnbtn");
+        dnbtn.textContent = "done ✔️";
+        let br = document.createElement("br");
+        editDiv.style.display = "none";
+        editDiv.append(inpt, dnbtn);
+        let cvc = 0;
+        //----------------------------
+        edtbtn.addEventListener("click", function () {
+          p.style.display = "none";
+          // div1.append(inpt, dnbtn, br, p, stsbtn, rmvbtn);
+          // taskDiv.append(div1);
+          editDiv.style.display = "block";
+          let oldtsk = obj.Task_Name;
+          inpt.value = oldtsk;
+          console.log(obj);
+
+          dnbtn.addEventListener("click", function () {
+            p.style.display = "";
+            // let oldtsk = obj.Task_Name;
+            // inpt.value = oldtsk;
+            let pp = inpt.value;
+            if (pp) obj.Task_Name = pp;
+            if (pp !== oldtsk) {
+              obj.Status = false;
+              obj.time = new Date().toLocaleTimeString();
+            }
+            //  console.log(pp, obj.Task_Name);
+            editDiv.style.display = "none";
+            localStorage.setItem("localTask", JSON.stringify(taskarr));
+            displaytask(taskarr);
+          });
+        });
+
+        stsbtn.addEventListener("click", function () {
+          if (obj.Status === false) {
+            obj.Status = true;
+          } else if (obj.Status === true) {
+            obj.Status = false;
+          }
+          localStorage.setItem("localTask", JSON.stringify(taskarr));
+          cnt.textContent = taskarr.length;
+          displaytask(taskarr);
+        });
+        let rmvbtn = document.createElement("button");
+        rmvbtn.setAttribute("class", "insidebtn");
+        rmvbtn.style.background = "coral";
+        rmvbtn.addEventListener("click", function () {
+          console.log(obj, index);
+          if (obj.Status === true) taskarr.splice(index, 1);
+          else alert("Please complete the Task first");
+          localStorage.setItem("localTask", JSON.stringify(taskarr));
+          cnt.textContent = taskarr.length;
+          displaytask(taskarr);
+        });
+        rmvbtn.textContent = "Remove Task 🗑";
+        console.log(obj);
+        p.textContent =
+          "📅" +
+          obj.Date +
+          " " +
+          obj.month +
+          ", " +
+          obj.time +
+          "  " +
+          " :     " +
+          " " +
+          "📌 " +
+          obj.Task_Name;
+        p.style.display = "inline-block";
+        p.setAttribute("id", "taskss");
+
+        //==================================================================
+        p.addEventListener("dblclick", function () {
+          // div1.append(inpt, dnbtn, br, p, stsbtn, rmvbtn);
+          // taskDiv.append(div1);
+          p.style.display = "none";
+          editDiv.style.display = "block";
+          let oldtsk = obj.Task_Name;
+          inpt.value = oldtsk;
+          console.log(obj);
+
+          dnbtn.addEventListener("click", function () {
+            p.style.display = "";
+            // let oldtsk = obj.Task_Name;
+            // inpt.value = oldtsk;
+            let pp = inpt.value;
+            if (pp) obj.Task_Name = pp;
+            if (pp !== oldtsk) {
+              obj.Status = false;
+              obj.time = new Date().toLocaleTimeString();
+            }
+            //  console.log(pp, obj.Task_Name);
+            editDiv.style.display = "none";
+            localStorage.setItem("localTask", JSON.stringify(taskarr));
+            displaytask(taskarr);
+          });
+        });
+
+        //==================================================================
+        // p.style.background = "skyblue";
+        cnt.textContent = taskarr.length;
+        // br.style.marginTop = "-15px";
+        // br.style.marginTop = "-15px";
+        // stsbtn.style.scrollMarginBottom = "5px";
+        div1.append(editDiv, br, p, br, stsbtn, edtbtn, rmvbtn);
+        // div1.style.background = "rgb(212, 189, 255)";
+        //div1.style.width = "95%";
+        taskDiv.append(div1);
+      }
+    });
+  }
+  //   let arr =
+  function btnclick() {
+    let tskname = document.querySelector("input").value;
+    document.querySelector("input").value = "";
+    console.log(tskname);
+    let Status = false;
+    let d = new Date();
+
+    const month = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    //const d = new Date();
+    let namntme = month[d.getMonth()];
+    console.log(namntme);
+    if (tskname) {
+      function info(a, b, mnt) {
+        this.Task_Name = a;
+        this.Status = b;
+        let p = new Date().getDate();
+        let D = new Date().toLocaleTimeString();
+
+        this.month = mnt;
+        this.Date = p;
+        this.time = D;
+      }
+
+      let port1 = new info(tskname, Status, namntme);
+      taskarr.push(port1);
+      localStorage.setItem("localTask", JSON.stringify(taskarr));
+      console.log(taskarr);
+      cnt.textContent = taskarr.length;
+      displaytask(taskarr);
+    }
+  }
+</script>
