@@ -4,7 +4,7 @@ A stand alone Todo app that is downloadable and can be used offline as well
 Netlify Deployement link- https://2d0app.netlify.app/
 <br/>
 <br/>
-<img src="https://i.ibb.co/GMsSnZq/git.jpg" height="500px" width="1080px">
+<img src="https://i.ibb.co/GMsSnZq/git.jpg" height="600px" width="1180px">
 
 <br/>
 <br/>
