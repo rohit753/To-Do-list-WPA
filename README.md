@@ -25,6 +25,11 @@ Netlify Deployement link- https://2d0app.netlify.app/
 2. Timer
 3. Auto detete completed tasks
 <br/>
+
 <br/>
+Tech - Stack - Js,HTML,CSS,Es6
+<br/>
+
 <br/>
 # Have a suggestion ? .... I am more than happy to discuss.
+
