@@ -10,12 +10,12 @@ Netlify Deployement link- https://2d0app.netlify.app/
 <br/>
 # Features
 <br/>
-1. To use the app just create a task.
-2. Review it if you feel like you need to edit the task double click to edit the task or you can click on edit button to do so.
-3. Once the task ths task is changed the status will reset to pending.
-4. Once the task is done click on pending to change the status to done 
-5. At the end od the day you can see all the tasks you have completed and what are your pending task.
-6. The app add the date and time stamps to the tasks you is somthing goes pending you will know when it was creadted and which task to prioritize.
+1. To use the app just create a task.<br/>
+2. Review it if you feel like you need to edit the task double click to edit the task or you can click on edit button to do so.<br/>
+3. Once the task ths task is changed the status will reset to pending.<br/>
+4. Once the task is done click on pending to change the status to done <br/>
+5. At the end od the day you can see all the tasks you have completed and what are your pending task.<br/>
+6. The app add the date and time stamps to the tasks you is somthing goes pending you will know when it was creadted and which task to prioritize.<br/>
 
 #Upcoming Features
 
