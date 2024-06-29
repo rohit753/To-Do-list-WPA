@@ -1,19 +1,20 @@
 {
-  "name": "To-DO APP",
-  "short_name": "2DO",
-  "start_url": ".",
+  "name": "Task Manager",
+  "short_name": "TaskMgr",
+  "description": "A simple task manager app",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#fff",
-  "description": "A Todo list app",
+  "background_color": "#ffffff",
+  "theme_color": "#28a745",
   "icons": [
     {
-      "src": "./512.png",
-      "sizes": "512x512",
+      "src": "icon-192.png",
+      "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./192.png",
-      "sizes": "192x192",
+      "src": "icon-512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]
